@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redview/pages/home.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
@@ -16,7 +17,7 @@ class _LoadingState extends State<Loading> {
   }
 
   void gotoHome() async {
-    await Future.delayed(const Duration(seconds: 4), (){
+    await Future.delayed(const Duration(seconds: 2), (){
       Navigator.popAndPushNamed(context, '/home');
       });
   }
@@ -25,21 +26,21 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromRGBO(27, 37, 47, 1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            SpinKitFoldingCube(
-              color: Colors.red,
+            SpinKitCubeGrid(
+              color: Color.fromRGBO(194, 15, 85, 1),
               size: 50.0,
               duration: Duration(milliseconds: 1200),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 40,),
             Text(
               'Welcome to RedView',
                 style: TextStyle(
-                  color: Colors.red,
+                  color: Color.fromRGBO(194, 15, 85, 1),
                   fontSize: 25,
                 ),
               )
