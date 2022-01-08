@@ -59,7 +59,9 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Text(post),
+            Text(post,
+            style: TextStyle(color: Colors.white),
+            ),
           ],
         ),
       )
