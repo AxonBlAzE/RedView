@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redview/pages/home.dart';
 import 'package:redview/pages/loading.dart';
+import 'package:redview/pages/view.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -13,6 +14,7 @@ void main() => runApp(
         routes: {
           '/': (context) => const Loading(),
           '/home': (context) => const Home(),
+          '/view': (context) => const View(),
         },
       ),
     );
