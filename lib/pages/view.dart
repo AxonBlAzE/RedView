@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:redview/pages/home.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:share/share.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
@@ -57,16 +58,20 @@ class _ViewState extends State<View> {
       body: WebView(
         initialUrl: url,
         javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webcontroller){
-                _controller.complete(webcontroller);
-        },  
+        // onWebViewCreated: (WebViewController webcontroller){ _controller.complete(webcontroller);},  
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pop(context);
+          flutterWebviewPlugin.dispose();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Home(),
+            ),
+          );
         },
-        child: Icon(Icons.home),
+        child: const Icon(Icons.home),
         backgroundColor: const Color.fromRGBO(194, 15, 85, 1),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -77,31 +82,31 @@ class _ViewState extends State<View> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(width: 70),
-              IconButton(
-                tooltip: 'Share Page',
-                icon: const Icon(Icons.share_rounded, color: Color.fromRGBO(194, 15, 85, 1)),
-                onPressed: () async {
-                  // String currentUrl = await _controller.future.then((controller) => controller.currentUrl());
-                  // if (currentUrl == null ){
-                  //   Share.share(url);
-                  // } else {
-                  //   Share.share(currentUrl);
-                  // }
-                  },
-              ),
-              const SizedBox(width: 10),
+              // const SizedBox(width: 70),
               IconButton(
                 tooltip: 'Info',
                 icon: const Icon(Icons.info_outline_rounded, color: Color.fromRGBO(194, 15, 85, 1)),
                 onPressed: () {},
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 50),
               IconButton(
-                tooltip: 'Back',
-                icon: const Icon(Icons.arrow_back_outlined, color: Color.fromRGBO(194, 15, 85, 1)),
-                onPressed: () {},
+                tooltip: 'Share Page',
+                icon: const Icon(Icons.share_rounded, color: Color.fromRGBO(194, 15, 85, 1)),
+                onPressed: () async {
+                  // String currentUrl = await _controller.currentUrl();
+                  // url = await flutterWebviewPlugin.e
+                  Share.share(url);
+                },  
               ),
+              // const SizedBox(width: 10),
+              // IconButton(
+              //   tooltip: 'Back',
+              //   icon: const Icon(Icons.arrow_back_outlined, color: Color.fromRGBO(194, 15, 85, 1)),
+              //   onPressed: () {
+              //     flutterWebviewPlugin.dispose();
+              //     Navigator.popAndPushNamed(context, '/home');
+              //   },
+              // ),
             ],
           ),
         ),
